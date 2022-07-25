@@ -1,0 +1,31 @@
+name: Reusable workflow Docker build and push to ECR
+
+on:
+  workflow_call:
+    inputs:
+      image_name:
+        required: true
+        type: string
+
+jobs:
+  docker_build_push_ecr:
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    -name: Echo var
+     run: |
+      echo ${{ inputs.image_name }}
+
+    - name: Build and push the Docker image
+      env:
+        IMAGE_NAME: ${{ inputs.image_name }}
+      run: |
+        docker build -t vissimo/$IMAGE_NAME:latest .
+
+
+
+
+
