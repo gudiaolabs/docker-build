@@ -8,7 +8,7 @@ on:
         type: string
 
 jobs:
-  docker_build_push_ecr:
+  docker_build:
     runs-on: ubuntu-latest
     steps:
 
